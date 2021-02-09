@@ -1,6 +1,11 @@
 4.1 Suppose you just cloned a repository that included one python file, my_first_file.py, and you now want to add a second file to your repository named my_second_file.py and push it to Github.com. Complete the sequence of linux shell commands:
 		
 		git clone git@github.com:my-name/my-imaginary-repo.git
+		cd my-imaginary-repo
+		touch my_second_file
+		git add my_second_file.py
+		git commit -m "my second file"
+		git push
 		##complete the sequence
 
 (Note: create the file using the `touch` command)
@@ -11,5 +16,7 @@ At first I started editing the grovepy_sensors.py file on my VM using the Sublim
 
 
 4.3 In the starter code, we added a 200 ms sleep. Suppose you needed to poll the ultrasonic ranger as fast as possible, so you removed the sleep function. Now, your code has just the function ultrasonicRead() inside a while loop. However, even though there are no other functions in the while loop, you notice there is a constant delay between each reading. Dig through the python library to find out why there is a constant delay. What is the delay amount? In addition, what communication protocol does the Raspberry Pi use to communicate with the Atmega328P on the GrovePi when it tries to read the ultrasonic ranger output using the `grovepi` python library?
+
+The delay amount is 60 ms - this is included because the firmware needs 50 ms to write and read to the i2c command that communicated with the Atmega328P. it uses an i2c serial communication protocol so that data is transferred one bit at a time.
 
 
